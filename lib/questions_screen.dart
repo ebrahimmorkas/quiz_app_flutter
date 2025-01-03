@@ -33,7 +33,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(currentQuestion.question),
+          Text(
+            currentQuestion.question,
+            style: TextStyle(
+              color: Color.fromARGB(255, 213, 216, 223),
+              fontSize: 30,
+            ),
+          ),
           ...currentQuestion.answers.map((answer) {
             return AnswerButton(label: answer, clicked: click);
           })
