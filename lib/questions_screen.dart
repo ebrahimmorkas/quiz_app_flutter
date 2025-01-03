@@ -14,13 +14,18 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex =
       0; // this variable will hold the current index of the question initially top zeroth index
 
+  List<String> selectedAnswers =
+      []; // This is the list that will hold the questions selected by the user.
+
   // This function will handle the button click for the answers.
-  void click() {
+  void click(String answer) {
     setState(() {
       if (currentQuestionIndex < questions.length - 1) {
+        selectedAnswers.add(answer);
         currentQuestionIndex++;
       } else {
         print("Quiz completed");
+        print(selectedAnswers);
       }
     });
   }
@@ -29,6 +34,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Widget build(BuildContext context) {
     // Creating this variable that will automatically handle the question and answers change because of state.
     var currentQuestion = questions[currentQuestionIndex];
+    List<String> currentQuestionAnswersList = [];
+    currentQuestionAnswersList = currentQuestion.answers;
+    currentQuestionAnswersList.shuffle();
     return GradientContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -40,8 +48,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               fontSize: 30,
             ),
           ),
-          ...currentQuestion.answers.map((answer) {
-            return AnswerButton(label: answer, clicked: click);
+          ...currentQuestionAnswersList.map((answer) {
+            return AnswerButton(
+                label: answer,
+                clicked: () {
+                  click(answer);
+                });
           })
         ],
       ),
