@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/gradient_container.dart';
 import 'package:quiz_app/answer_button.dart';
 import 'package:quiz_app/questions.dart';
+import 'package:quiz_app/results_screen.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -17,26 +18,35 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   List<String> selectedAnswers =
       []; // This is the list that will hold the questions selected by the user.
 
-  // This function will handle the button click for the answers.
-  void click(String answer) {
-    setState(() {
-      if (currentQuestionIndex < questions.length - 1) {
-        selectedAnswers.add(answer);
-        currentQuestionIndex++;
-      } else {
-        print("Quiz completed");
-        print(selectedAnswers);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    // This function will handle the button click for the answers.
+    void click(String answer) {
+      setState(() {
+        if (currentQuestionIndex < questions.length - 1) {
+          selectedAnswers.add(answer);
+          currentQuestionIndex++;
+        } else {
+          print("Quiz completed");
+          selectedAnswers.add(answer);
+          print(selectedAnswers);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ResultsScreen(selectedAsnwers: selectedAnswers)));
+        }
+      });
+    }
+
     // Creating this variable that will automatically handle the question and answers change because of state.
     var currentQuestion = questions[currentQuestionIndex];
+
     List<String> currentQuestionAnswersList = [];
-    currentQuestionAnswersList = currentQuestion.answers;
+
+    currentQuestionAnswersList = List.from(currentQuestion.answers);
     currentQuestionAnswersList.shuffle();
+
     return GradientContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
