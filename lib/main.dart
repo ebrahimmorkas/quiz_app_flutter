@@ -21,7 +21,13 @@ class MyApp extends StatelessWidget {
             color: const Color.fromARGB(232, 236, 220, 220),
           ),
           SizedBox(height: 80),
-          Text("Hello World"),
+          Text(
+            "Quiz App in Flutter",
+            style: TextStyle(
+              color: Color.fromARGB(255, 152, 203, 210),
+              fontSize: 25,
+            ),
+          ),
           SizedBox(height: 30),
           OutlinedButton.icon(
             icon: Icon(Icons.arrow_right_alt),

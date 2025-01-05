@@ -40,8 +40,9 @@ class _ResultsScreenState extends State<ResultsScreen> {
         children: [
           ResultsScreenText(
             text: "You scored $correctAnswers",
-            color: [255, 226, 218, 239],
+            color: [255, 2, 16, 82],
             fontSize: 30,
+            weight: FontWeight.bold,
           ),
           SizedBox(
             height: 16,
@@ -57,6 +58,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       fontSize: 25,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.check),
                         SizedBox(width: 15),
@@ -69,6 +71,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     if (widget.selectedAnswers[index] !=
                         questions[index].answers[0])
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.close),
                           SizedBox(width: 15),
@@ -84,7 +87,18 @@ class _ResultsScreenState extends State<ResultsScreen> {
               itemCount: widget.selectedAnswers.length,
             ),
           ),
-          ElevatedButton(
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 15),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 2, 16, 82),
+                foregroundColor: Color.fromARGB(226, 214, 239, 245),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(3)),
+              ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
@@ -92,7 +106,9 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   },
                 ));
               },
-              child: Text("Restart"))
+              child: Text("Restart"),
+            ),
+          )
         ],
       ),
     );
