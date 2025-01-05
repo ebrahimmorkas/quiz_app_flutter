@@ -34,7 +34,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      ResultsScreen(selectedAsnwers: selectedAnswers)));
+                      ResultsScreen(selectedAnswers: selectedAnswers)));
         }
       });
     }
